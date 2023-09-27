@@ -3,29 +3,39 @@ Helper function to calculate temperature using conversion formulas
 depending on the user-inputted units
 """
 def choose_formula(from_unit, to_unit, temp):
-    if from_unit in ["c", "C"] and to_unit in ["f", "F"]:
-        fahrenheit_temp = (temp * 9) / 5 + 32
-        print(f"{temp:.2f}C = {fahrenheit_temp:.2f}F")
+    # case: if the user inpts same unit for FROM and TO units
+    if from_unit.upper() == to_unit.upper():
+        print(f"{temp:.2f}{from_unit.upper()} = {temp:.2f}{to_unit.upper()}")
 
+    # case: if the user inputs from celsius to fahrenheit
+    elif from_unit in ["c", "C"] and to_unit in ["f", "F"]:
+        fahrenheit_temp = (temp * 9) / 5 + 32
+        print(f"{temp:.2f}{from_unit.upper()} = {fahrenheit_temp:.2f}{to_unit.upper()}")
+
+    # case: if the user inputs from celsius to kelvin 
     elif from_unit in ["c", "C"] and to_unit in ["K", "k"]:
         kelvin_temp =  temp + 273.15
-        print(f"{temp:.2f}C = {kelvin_temp:.2f}K")
+        print(f"{temp:.2f}{from_unit.upper()} = {kelvin_temp:.2f}{to_unit.upper()}")
 
+    # case: if the user inputs from fahrenheit to celsius 
     elif from_unit in ["F", "f"] and to_unit in ["c", "C"]:
         celsius_temp = (temp - 32) * 5 / 9
-        print(f"{temp:.2f}F = {celsius_temp:.2f}C")
+        print(f"{temp:.2f}{from_unit.upper()} = {celsius_temp:.2f}{to_unit.upper()}")
 
+    # case: if the user inputs from fahrenheit to kelvin
     elif from_unit in ["F", "f"] and to_unit in ["K", "k"]:
         kelvin_temp = (temp + 459.67) * 5 / 9
-        print(f"{temp:.2f}F = {kelvin_temp:.2f}K")
+        print(f"{temp:.2f}{from_unit.upper()} = {kelvin_temp:.2f}{to_unit.upper()}")
 
+    # case: if the user inputs from kelvin to fahrenheit
     elif from_unit in ["K", "k"] and to_unit in ["F", "f"]:
         f_temp =  temp * 9 / 5 - 459.67
-        print(f"{temp:.2f}K = {f_temp:.2f}F")
-        
+        print(f"{temp:.2f}{from_unit.upper()} = {f_temp:.2f}{to_unit.upper()}")
+
+    # case: if the user inputs from kelvin to celsius   
     elif from_unit in ["K", "k"] and to_unit in ["c", "C"]:
         c_temp = temp - 273.15
-        print(f"{temp:.2f}K = {c_temp:.2f}C")
+        print(f"{temp:.2f}{from_unit.upper()} = {c_temp:.2f}{to_unit.upper()}")
 
 # Exit program function to exit any time user inputs "E"
 def exit_program():
@@ -34,7 +44,7 @@ def exit_program():
     exit()
 
 def enter_calculater():
-    print("This is a temperature unit conversion calculator.\n It converts from/to Celsius, Fahrenheit, and Kelvin.")
+    print("This is a temperature unit conversion calculator.\nIt converts from/to Celsius, Fahrenheit, and Kelvin.\n \n")
 
     temp_prompt = input("Enter a temperature(number), or E to exit: ")
 
@@ -53,7 +63,6 @@ def enter_calculater():
         if from_unit in ["C", "c", "F", "f", "K", "k"]:
             first_move = False
             second_move = True
-            print("here in 1 move")
         else:
             print(f"[ERROR] Invalid temperature unit {from_unit}\nValid choices are:[Cc/Ff/Kk]")
 
