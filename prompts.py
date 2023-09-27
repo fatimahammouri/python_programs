@@ -1,5 +1,5 @@
 def choose_formula(from_unit, to_unit, temp_number):
-    pass
+    print("choose formula")
 
 def exit_program():
     print("Exiting the temperature conversion calculator.")
@@ -25,17 +25,18 @@ while first_move:
     from_unit = input("Enter FROM temperature unit :[Cc/Ff/Kk]")
     if from_unit == "E":
         exit_program()
-    if from_unit in "CcFfKk":
+    if from_unit in ["C", "c", "F", "f", "K", "k"]:
         first_move = False
         second_move = True
+        print("here in 1 move")
     else:
         print(f"[ERROR] Invalid temperature unit {from_unit} /n Valid choices are:[Cc/Ff/Kk]")
 
 while second_move:
     to_unit = input("Enter TO temperature unit :[Cc/Ff/Kk]")
-    if from_unit == "E":
+    if to_unit == "E":
         exit_program()
-    if to_unit in "CcFfKk":
+    if to_unit in ["C", "c", "F", "f", "K", "k"]:
         choose_formula(from_unit, to_unit, temp_number)
         second_move = False
     else:
